@@ -305,3 +305,61 @@ seoul	return
 function solution(seoul) {
     return "김서방은 "+seoul.indexOf("Kim")+"에 있다";
 }
+---------------------------------------------------------------------------------------------
+6/3
+
+문제: 
+나누어 떨어지는 숫자 배열
+
+설명: 
+array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+
+
+입출력 예
+arr	divisor	return
+[5, 9, 7, 10]	5	[5, 10]
+[2, 36, 1, 3]	1	[1, 2, 3, 36]
+[3,2,6]	10	[-1]
+
+답안:
+function solution(arr, divisor) {
+    return arr.filter((v)=> v%divisor === 0).length ===0 ? [-1] : arr.filter((v)=> v%divisor === 0).sort((a, b)=> a-b) 
+
+}
+
+---------------------------------------------------------------------------------------------
+문제: 
+핸드폰 번호 가리기
+
+설명: 
+프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다.
+전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지 숫자를 전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
+
+
+입출력 예
+phone_number	return
+"01033334444"	"*******4444"
+"027778888"	"*****8888"
+
+답안:
+function solution(phone_number) {
+  return phone_number.replace(/\d(?=\d{4})/g, "*");
+}
+---------------------------------------------------------------------------------------------
+문제: 
+음양 더하기
+
+설명: 
+어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.
+
+
+입출력 예
+absolutes	signs	result
+[4,7,12]	[true,false,true]	9
+[1,2,3]	[false,false,true]	0
+
+답안:
+function solution(absolutes, signs) {
+    return absolutes.map((v,i)=>signs[i] ?  v :  -v ).reduce((a, c)=> a + c)
+}
