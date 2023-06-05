@@ -607,3 +607,89 @@ function solution(n) {
     return "수박".repeat(n).slice(0, n);
 }
 ```
+
+---
+
+# 6/5
+
+## 문제:
+
+없는 숫자 더하기 3
+
+## 설명:
+
+0부터 9까지의 숫자 중 일부가 들어있는 정수 배열 numbers가 매개변수로 주어집니다. numbers에서 찾을 수 없는 0부터 9까지의 숫자를 모두 찾아 더한 수를 return 하도록 solution 함수를 완성해주세요.
+
+## 입출력 예
+
+|      numbers      | result |
+| :---------------: | :----: |
+| [1,2,3,4,6,7,8,0] |   14   |
+|  [5,8,4,0,6,7,9]  |   6    |
+
+## 답안:
+
+```
+function solution(numbers) {
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].filter(x => !numbers.includes(x)).reduce((a, b) => a + b);
+}
+
+```
+
+---
+
+## 문제:
+
+제일 작은 수 제거하기
+
+## 설명:
+
+정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
+
+## 입출력 예
+
+|    arr    | return  |
+| :-------: | :-----: |
+| [4,3,2,1] | [4,3,2] |
+|   [10]    |  [-1]   |
+
+## 답안:
+
+```
+function solution(arr) {
+    arr.splice(arr.indexOf(Math.min(...arr)),1);
+    arr.length <= 1 ? answer = [-1] : answer = arr
+    return answer;
+}
+```
+
+---
+
+## 문제:
+
+가운데 글자 가져오기
+
+## 설명:
+
+단어 s의 가운데 글자를 반환하는 함수, solution을 만들어 보세요. 단어의 길이가 짝수라면 가운데 두글자를 반환하면 됩니다.
+
+## 입출력 예
+
+|    s    | return |
+| :-----: | :----: |
+| "abcde" |  "c"   |
+| "qwer"  |  "we"  |
+
+## 답안:
+
+```
+function solution(s) {
+    let answer = '';
+    if (s.length % 2 == 0 ) { // 짝수일 경우,
+        answer = s[s.length / 2 - 1] + s[s.length / 2];
+    } else {
+        answer = s[Math.floor(s.length/2)]; // 홀수일 경우, 반내림 하기
+    }
+    return answer;
+}
+```
