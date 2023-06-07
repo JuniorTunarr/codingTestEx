@@ -781,3 +781,114 @@ function solution(s) {
     }
 }
 ```
+
+---
+
+# 6/7
+
+## 문제:
+
+행렬의 덧셈
+
+## 설명:
+
+행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
+
+## 입출력 예
+
+|      arr1       |      arr2       |     return      |
+| :-------------: | :-------------: | :-------------: |
+| `[[1,2],[2,3]]` | `[[3,4],[5,6]]` | `[[4,6],[7,9]]` |
+| `[[4,6],[7,9]]` |   `[[3],[4]]`   |   `[[4],[6]]`   |
+
+## 답안:
+
+```
+function solution(arr1, arr2){
+    let answer = [] // 배열들을 감싸줄 배열틀
+    for(let i = 0; i < arr1.length; i++){
+        let temp_arr = []  // 각 배열을 더한 값을 넣어줄 임시 배열
+     for(let j  = 0; j < arr1[i].length; j++){
+    temp_arr.push(arr1[i][j] + arr2[i][j])
+    //temp_arr=arr1[i][j]+arr2[i][j]
+  }
+        answer.push(temp_arr)  //answer = [temp_arr]
+}
+    return answer;
+}
+```
+
+---
+
+## 문제:
+
+직사각형 별찍기
+
+## 설명:
+
+이 문제에는 표준 입력으로 두 개의 정수 n과 m이 주어집니다.
+별(\*) 문자를 이용해 가로의 길이가 n, 세로의 길이가 m인 직사각형 형태를 출력해보세요.
+
+## 입력
+
+```
+5 3
+```
+
+## 출력
+
+```
+*****
+*****
+*****
+```
+
+## 답안:
+
+```
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', data => {
+      const n = data.split(" ");
+  const a = Number(n[0]),
+    b = Number(n[1]);
+  // 입력 값 b(3) 만큼 반복문을 돌린다.
+  for (let i = 0; i < b; i++) {
+    // stars 변수를 초기화 해준다.
+    let stars = "";
+    // 위 for문이 한번 돌아갈 때 마다 입력 값 a(5) 만큼 반복문을 돌린다.
+    for (let j = 0; j < a; j++) {
+      // stars = stars + "*"
+      stars += "*";
+    }
+    // 콘솔에 현재 까지 저장된 stars 값을 찍는다. (*****)
+    console.log(stars);}
+});
+```
+
+---
+
+## 문제:
+
+최대공약수와 최소공배수
+
+## 설명:
+
+두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환하는 함수, solution을 완성해 보세요. 배열의 맨 앞에 최대공약수, 그다음 최소공배수를 넣어 반환하면 됩니다. 예를 들어 두 수 3, 12의 최대공약수는 3, 최소공배수는 12이므로 solution(3, 12)는 [3, 12]를 반환해야 합니다.
+
+## 입출력 예
+
+|  n  |  m  | return  |
+| :-: | :-: | :-----: |
+|  3  | 12  | [3, 12] |
+|  2  |  5  | [1, 10] |
+
+## 답안:
+
+```
+
+function solution(num1, num2) {
+    const gcd = (a, b) => a % b === 0 ? b : gcd(b, a % b);
+    const lcm = (a, b) => a * b / gcd(a, b);
+    return [gcd(num1, num2), lcm(num1, num2)];
+}
+```
