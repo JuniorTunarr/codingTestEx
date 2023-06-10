@@ -998,3 +998,104 @@ function solution(d, budget) {
 }
 
 ```
+
+---
+
+# 6/10
+
+## 문제:
+
+이상한 문자 만들기
+
+## 설명:
+
+문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, solution을 완성하세요.
+
+## 입출력 예
+
+|         s         |      return       |
+| :---------------: | :---------------: |
+| "try hello world" | "TrY HeLlO WoRlD" |
+
+## 답안:
+
+```
+function solution(s) {
+    let answer = '';
+    let index = 0;
+    for (let spell of s) {
+        answer += (index % 2 === 0) ? spell.toUpperCase() : spell.toLowerCase();
+        index += 1;
+        if (spell === ' ') index = 0;
+    }
+    return answer;
+}
+```
+
+---
+
+## 문제:
+
+삼총사
+
+## 설명:
+
+한국중학교에 다니는 학생들은 각자 정수 번호를 갖고 있습니다. 이 학교 학생 3명의 정수 번호를 더했을 때 0이 되면 3명의 학생은 삼총사라고 합니다. 예를 들어, 5명의 학생이 있고, 각각의 정수 번호가 순서대로 -2, 3, 0, 2, -5일 때, 첫 번째, 세 번째, 네 번째 학생의 정수 번호를 더하면 0이므로 세 학생은 삼총사입니다. 또한, 두 번째, 네 번째, 다섯 번째 학생의 정수 번호를 더해도 0이므로 세 학생도 삼총사입니다. 따라서 이 경우 한국중학교에서는 두 가지 방법으로 삼총사를 만들 수 있습니다.
+
+한국중학교 학생들의 번호를 나타내는 정수 배열 number가 매개변수로 주어질 때, 학생들 중 삼총사를 만들 수 있는 방법의 수를 return 하도록 solution 함수를 완성하세요.
+
+## 입출력 예
+
+|          number          | result |
+| :----------------------: | :----: |
+|    [-2, 3, 0, 2, -5]     |   2    |
+| [-3, -2, -1, 0, 1, 2, 3] |   5    |
+|      [-1, 1, -1, 1]      |   0    |
+
+## 답안:
+
+```
+function solution(number) {
+    let sum = 0;
+    for(let i = 0; i < number.length; i++){
+        for(let j = i+1; j < number.length; j++){
+            for(let k = j+1; k < number.length; k++)
+                if(number[i]+number[j]+number[k] === 0)
+                    sum += 1;
+        }
+    }
+    return sum;
+}
+```
+
+---
+
+## 문제:
+
+시저 암호
+
+## 설명:
+
+어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 "AB"는 1만큼 밀면 "BC"가 되고, 3만큼 밀면 "DE"가 됩니다. "z"는 1만큼 밀면 "a"가 됩니다. 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.
+
+## 입출력 예
+
+|    s    |  n  | result  |
+| :-----: | :-: | :-----: |
+|  "AB"   |  1  |  "BC"   |
+|   "z"   |  1  |   "a"   |
+| "a B z" |  4  | "e F d" |
+
+## 답안:
+
+```
+
+function solution(s, n) {
+    return s.split('').map(char => {
+        if (char === ' ') return char;
+        let base = char.toUpperCase() === char ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
+        return String.fromCharCode(((char.charCodeAt(0) - base + n) % 26) + base);
+    }).join('');
+}
+
+```
